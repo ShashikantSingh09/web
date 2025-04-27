@@ -10,6 +10,8 @@ pipeline {
         ECS_CLUSTER_NAME = 'web-cluster'  
         ECS_SERVICE_NAME = 'web-service'
         AWS_REGION = 'us-east-1'
+        AWS_ACCESS= 'AKIA4MTWI4VXGZHLGUE6'
+        AWS_SECRET= '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'
     }
 
     stages {
