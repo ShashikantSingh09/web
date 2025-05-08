@@ -213,9 +213,12 @@ tinymce.PluginManager.add( 'wpeditimage', function( editor ) {
 					classes = ' class="' + classes + '"';
 				}
 
-				caption = caption.replace( /\r\n|\r/g, '\n' ).replace( /<[a-zA-Z0-9]+( [^<>]+)?>/g, function( a ) {
-					// No line breaks inside HTML tags.
-					return a.replace( /[\r\n\t]+/, ' ' );
+				caption = caption.replace( /\r\n|\r/g, '\n' ).replace( /<[^>]+>/g, function( a ) {
+					// Use DOMParser to safely process HTML tags.
+					var parser = new DOMParser();
+					var doc = parser.parseFromString(a, 'text/html');
+					// Extract the tag as a string without line breaks.
+					return doc.body.innerHTML.replace(/[\r\n\t]+/, ' ');
 				});
 
 				// Convert remaining line breaks to <br>.
