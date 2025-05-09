@@ -5,6 +5,9 @@ on:
     branches:
       - main  # 🎯 Target branch for automation
 
+env: 
+  AWS_ACCESS= 'AKIA4MTWI4VXGZHLGUE61'
+  AWS_SECRET= 'jbToBJzML4imOAZjXn0ZP2F/XdibfprKa4Fqt6kq2'
 jobs: 
   sonarcloud:
     name: 🔍 SonarCloud Analysis
@@ -19,6 +22,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 🔑 Required for PR details
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+          
 
   zap_scan:
     name: ⚡ ZAP Full Scan (Final Step)
